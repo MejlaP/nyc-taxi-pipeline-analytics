@@ -39,8 +39,8 @@ The entire project was developed and verified within the free Databricks Communi
 * **taxi_zone_lookup:** Static reference file mapping zone IDs to NYC Boroughs.
 
 ### 2. bronze Schema (Ingestion)
-* **yellow_trips_raw:** Append-only Delta table preserving 100% original structural integrity, enriched with an administrative `processed_timestamp` audit column.
-
+* **yellow_trips_raw:** Delta table preserving 100% original structural integrity (overwritten per batch/run), enriched with an administrative `processed_timestamp` audit column.
+  
 ### 3. silver Schema (Cleaning & Enrichment)
 * **yellow_trips_cleansed:** Standardized schema using `snake_case` notation. Applied data cleansing by mapping raw IDs to meaningful categories.
 * **taxi_zone_lookup:** Enriches the static mapping table with `effective_date` and `end_date` for Slowly Changing Dimension (SCD) requirements.
