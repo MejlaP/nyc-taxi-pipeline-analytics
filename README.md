@@ -10,9 +10,9 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ## 🛠️ Technology Stack
 * **Platform:** Databricks Community Edition
 * **Data Governance:** Unity Catalog (Catalog: `nyctaxi`)
-* **Processing Engine:** Apache Spark (PySpark & Spark SQL)
+* **Processing Engine:** Apache Spark (via PySpark API)
 * **Storage & Table Format:** Delta Lake & Parquet
-* **Languages:** Python, SQL
+* **Languages:** Python
 
 ---
 
