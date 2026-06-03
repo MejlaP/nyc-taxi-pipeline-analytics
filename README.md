@@ -16,11 +16,11 @@ The entire project was developed and verified within the free Databricks Communi
 
 ## Repository Structure
 ```text
-├── one_off/                                     # 1. Environment Setup & Backfill (Run first)
-│   ├── creating_catalogs_schemas_volume.ipynb   # Step 1: Create catalog, schemas, and Unity Catalog Volume
-│   ├── create_folder_for_taxi_zone_lookup.ipynb # Step 2: Prepare directory structure for lookup reference
-│   └── backfill_historical_yellow_trips.ipynb   # Step 3: Run initial historical data load
-├── transformations/                             # 2. Core ETL Pipeline (Chronological flow)
+├── one_off/                                     # Setup and Initialization
+│   ├── creating_catalogs_schemas_volume.ipynb   # Catalog, schemas, and Volume creation
+│   ├── backfill_historical_yellow_trips.ipynb   # Historical data backfill execution
+│   └── create_folder_for_taxi_zone_lookup.ipynb # Folder setup for taxi zone metadata
+├── transformations/                             # Core ETL Pipeline (Chronological flow)
 │   ├── 01_bronze/
 │   │   └── yellow_trips_raw.ipynb               # Raw ingestion with processed_timestamp
 │   ├── 02_silver/
@@ -30,4 +30,40 @@ The entire project was developed and verified within the free Databricks Communi
 │   └── 03_gold/
 │       └── daily_trip_summary.ipynb             # Final BI-ready report aggregation
 ├── quick_analysis/
-│   └── yellow_taxi_eda.ipynb                    # 3. Exploratory Data Analysis (EDA on gold data)
+│   └── yellow_taxi_eda.ipynb                    # Exploratory Data Analysis (EDA on gold data)
+
+## Pipeline & Transformations
+
+### 1. landing Schema (Raw Storage)
+* **nyctaxi_yellow:** Raw monthly partitioned Parquet files containing native taxi backend columns.
+* **taxi_zone_lookup:** Static reference file mapping zone IDs to NYC Boroughs.
+
+### 2. bronze Schema (Ingestion)
+* **yellow_trips_raw:** Append-only Delta table preserving 100% original structural integrity, enriched with an administrative `processed_timestamp` audit column.
+
+### 3. silver Schema (Cleaning & Enrichment)
+* **yellow_trips_cleansed:** Standardized schema using `snake_case` notation (e.g., `VendorID` to `vendor`, `PULocationID` to `pu_location_id`). Dropped invalid records.
+* **taxi_zone_lookup:** Enriches the static mapping table with `effective_date` and `end_date` for Slowly Changing Dimension (SCD) requirements.
+* **yellow_trips_enriched:** Wide production table combining cleansed trips and lookup zones. Features new calculated column `trip_duration_mins`.
+
+### 4. gold Schema (Business Aggregations)
+* **daily_trip_summary:** Business-ready Delta table aggregated at the daily level (`pickup_date`) serving as a direct source for Power BI/Tableau reports (`total_trips`, `avg_distance_per_trip`, `total_revenue`).
+
+---
+
+## Exploratory Data Analysis (EDA) Highlights
+The `yellow_taxi_eda.ipynb` notebook delivers actionable insights regarding:
+* **Vendor Performance:** Revenue analysis across taxi operators.
+* **Borough Popularity:** Top pickup and destination locations based on trip counts.
+* **Trend Analysis:** Time Series analysis correlating daily trip volumes with total revenue to identify weekly seasonality.
+
+---
+
+## Attribution and Course Inspiration
+This project was developed as an independent, practical capstone to solidify advanced data engineering competencies. The core architectural concepts (Medallion Architecture) and data engineering workflows are inspired by the educational materials provided by [FILL IN AUTHOR'S NAME OR COURSE NAME].
+
+**Key modifications and independent additions introduced in this repository:**
+1. **Environment Adaptation:** Optimized the workload configurations specifically to run efficiently inside the resource-constrained Databricks Community Edition environment.
+2. **Custom Historical Dataset:** Implemented using a completely independent time frame (H2 2025), which required rewriting data verification checks and edge-case validations.
+3. **Enriched Documentation:** All notebooks are supplemented with custom technical markdown cells and execution logs.
+4. **Independent EDA Module:** Designed and executed a full Exploratory Data Analysis module featuring custom time-series correlation charts built entirely outside the mandatory scope of the original curriculum.
