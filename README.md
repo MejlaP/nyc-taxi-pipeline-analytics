@@ -42,7 +42,7 @@ The entire project was developed and verified within the free Databricks Communi
 * **yellow_trips_raw:** Append-only Delta table preserving 100% original structural integrity, enriched with an administrative `processed_timestamp` audit column.
 
 ### 3. silver Schema (Cleaning & Enrichment)
-* **yellow_trips_cleansed:** Standardized schema using `snake_case` notation (e.g., `VendorID` to `vendor`, `PULocationID` to `pu_location_id`). Applied data cleansing by mapping raw IDs to meaningful categories.
+* **yellow_trips_cleansed:** Standardized schema using `snake_case` notation. Applied data cleansing by mapping raw IDs to meaningful categories.
 * **taxi_zone_lookup:** Enriches the static mapping table with `effective_date` and `end_date` for Slowly Changing Dimension (SCD) requirements.
 * **yellow_trips_enriched:** Wide production table combining cleansed trips and lookup zones. Features new calculated column `trip_duration_mins`.
 
