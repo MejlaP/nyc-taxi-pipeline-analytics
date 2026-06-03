@@ -1,24 +1,3 @@
-# NYC Taxi Data Pipeline & Analytics (H2 2025)
-
-## Project Overview
-This project implements a robust, scalable, end-to-end data pipeline processing real-world NYC Taxi (Yellow Cabs) data covering the second half of 2025 (July to December). The entire solution is engineered within Azure Databricks leveraging PySpark and the modern three-tier Delta Lake (Medallion Architecture).
-
-Data governance and schema isolation are fully managed via Unity Catalog (Catalog: `nyctaxi`), ensuring a transparent data lineage from raw backend files to production-ready business aggregations.
-
-## Technology Stack
-* **Environment & Orchestration:** Azure Databricks (Community Edition)
-* **Data Governance:** Unity Catalog (Catalog: `nyctaxi`)
-* **Language & Engine:** Python, PySpark (Spark SQL & DataFrames)
-* **Storage Format:** Delta Lake / Parquet
-* **Architecture Visualization:** Mermaid.js
-
----
-
-## Data Architecture & Schema Lineage (Medallion)
-
-The pipeline processes data sequentially across four dedicated schemas within the `nyctaxi` catalog. The schema below outlines the exact table structures, key column transformations, and relationships:
-
-```mermaid
 graph TD
     subgraph Unity Catalog: nyctaxi
         subgraph Schema: landing
@@ -31,9 +10,9 @@ graph TD
         end
 
         subgraph Schema: silver
-            D["yellow_trips_cleansed (Delta)<br>Data Cleaning & Standardization:<br>• VendorID --> vendor<br>• RatecodeID --> rate_type<br>• PULocationID --> pu_location_id<br>• DOLocationID --> do_location_id<br>• payment_type --> payment_type<br>• Filtered out negative fares & invalid distances"]
+            D["yellow_trips_cleansed (Delta)<br>Data Cleaning and Standardization:<br>• VendorID --> vendor<br>• RatecodeID --> rate_type<br>• PULocationID --> pu_location_id<br>• DOLocationID --> do_location_id<br>• payment_type --> payment_type<br>• Filtered out negative fares and invalid distances"]
             E["taxi_zone_lookup (Delta)<br>Dimensional Extension (SCD):<br>• LocationID, Borough, Zone, service_zone<br>• effective_date<br>• end_date"]
-            F["yellow_trips_enriched (Delta)<br>Denormalized Production Table:<br>• vendor, timestamps, passenger_count, trip_distance, rate_type<br>• trip_duration_mins (datediff from pickup/dropoff)<br>• pu_borough, do_borough (JOIN via LocationID)<br>• pu_zone, do_zone (JOIN via LocationID)<br>• All standardized financial components & processed_timestamp"]
+            F["yellow_trips_enriched (Delta)<br>Denormalized Production Table:<br>• vendor, timestamps, passenger_count, trip_distance, rate_type<br>• trip_duration_mins (datediff from pickup/dropoff)<br>• pu_borough, do_borough (JOIN via LocationID)<br>• pu_zone, do_zone (JOIN via LocationID)<br>• All standardized financial components and processed_timestamp"]
         end
 
         subgraph Schema: gold
@@ -42,9 +21,22 @@ graph TD
     end
 
     subgraph Analytics Layer
-        H["yellow_taxi_eda.ipynb<br>Exploratory Data Analysis:<br>• Vendor Revenue Performance<br>• Top Pickup Boroughs & Journeys<br>• Revenue vs. Trip Count Time Series"]
+        H["yellow_taxi_eda.ipynb<br>Exploratory Data Analysis:<br>• Vendor Revenue Performance<br>• Top Pickup Boroughs and Journeys<br>• Revenue vs. Trip Count Time Series"]
     end
 
     A -->|Raw Ingestion| C
-    C -->|Schema Enforcement & Rename| D
-    B -->
+    C -->|Schema Enforcement and Rename| D
+    B -->|SCD Tracking Setup| E
+    D -->|JOIN via pu or do location id| F
+    E -->|JOIN via LocationID| F
+    F -->|Business Aggregations| G
+    F -.->|Ad-hoc Source Data| H
+
+    style A fill:#eceff1,stroke:#333,stroke-width:1px
+    style B fill:#eceff1,stroke:#333,stroke-width:1px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bfb,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+    style G fill:#fbf,stroke:#333,stroke-width:2px
+    style H fill:#ffe0b2,stroke:#333,stroke-width:1px
