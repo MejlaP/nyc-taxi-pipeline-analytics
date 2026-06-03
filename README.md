@@ -1,14 +1,14 @@
 # NYC Taxi Data Pipeline and Analytics (H2 2025)
 
 ## Project Overview
-This project implements a robust, scalable, end-to-end data pipeline processing real-world NYC Taxi (Yellow Cabs) data covering the second half of 2025 (July to December). The solution is designed following production standards for Azure Databricks and implemented using PySpark and the modern three-tier Delta Lake (Medallion Architecture). Due to environment availability, the pipeline was deployed and verified within the Databricks Community Edition platform.
+This project is a hands-on implementation of a data pipeline processing real-world NYC Taxi (Yellow Cabs) data from the second half of 2025 (July to December). The pipeline is built using PySpark and structured according to the three-tier Delta Lake (Medallion Architecture). 
 
-Data governance and schema isolation are managed via Unity Catalog (`nyctaxi`), ensuring a transparent data lineage from raw backend files to production-ready business aggregations.
+The entire project was developed and verified within the free Databricks Community Edition platform using Unity Catalog (`nyctaxi`) for data isolation and schema management.
 
 ## Technology Stack
-* **Environment and Orchestration:** Databricks Community Edition (with architecture ready for Azure Databricks production deployment)
+* **Platform:** Databricks Community Edition
 * **Data Governance:** Unity Catalog (Catalog: `nyctaxi`)
-* **Language and Engine:** Python, PySpark (SQL and DataFrames)
+* **Language & Engine:** Python, PySpark (SQL and DataFrames)
 * **Storage Format:** Delta Lake / Parquet
 
 ---
