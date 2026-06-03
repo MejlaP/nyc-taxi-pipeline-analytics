@@ -18,9 +18,9 @@ The entire project was developed and verified within the free Databricks Communi
 ```text
 ├── one_off/                                     # Setup and Initialization
 │   ├── creating_catalogs_schemas_volume.ipynb   # Catalog, schemas, and Volume creation
-│   ├── backfill_historical_yellow_trips.ipynb   # Historical data backfill execution
-│   └── create_folder_for_taxi_zone_lookup.ipynb # Folder setup for taxi zone metadata
-├── transformations/                             # Core ETL Pipeline (Chronological flow)
+│   ├── backfill_historical_yellow_trips.ipynb   # Creating directory structure for each month in Volume
+│   └── create_folder_for_taxi_zone_lookup.ipynb # Creating directory for lookup Volume
+├── transformations/                             # Core ETL Pipeline (Landing Parquet ➔ Delta Lake)
 │   ├── 01_bronze/
 │   │   └── yellow_trips_raw.ipynb               # Raw ingestion with processed_timestamp
 │   ├── 02_silver/
