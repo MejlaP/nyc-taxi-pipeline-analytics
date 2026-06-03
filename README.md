@@ -8,7 +8,8 @@ The entire project was developed and verified within the free Databricks Communi
 ## Technology Stack
 * **Platform:** Databricks Community Edition
 * **Data Governance:** Unity Catalog (Catalog: `nyctaxi`)
-* **Language & Engine:** Python, PySpark (SQL and DataFrames)
+* **Languages:** Python, SQL
+* **Processing Engine:** Apache Spark (PySpark & Spark SQL)
 * **Storage Format:** Delta Lake / Parquet
 
 ---
