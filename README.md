@@ -25,7 +25,7 @@ The entire project was developed and verified within the free Databricks Communi
 │   │   └── yellow_trips_raw.ipynb               # Raw ingestion with processed_timestamp
 │   ├── 02_silver/
 │   │   ├── taxi_zone_lookup.ipynb               # Lookup standardization (SCD effective/end_date)
-│   │   ├── yellow_trips_cleansed.ipynb          # Schema cleaning & snake_case renaming
+│   │   ├── yellow_trips_cleansed.ipynb          # Schema cleaning, snake_case renaming and decoding numeric IDs
 │   │   └── yellow_trips_enriched.ipynb          # JOIN of trips and zones + duration calculation
 │   └── 03_gold/
 │       └── daily_trip_summary.ipynb             # Final BI-ready report aggregation
