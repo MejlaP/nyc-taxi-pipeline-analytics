@@ -54,7 +54,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 
 ## 📊 Analytics & Insights (EDA Highlights)
 The `yellow_taxi_eda.ipynb` notebook analyzes the final Gold data to answer core business questions:
-* **Vendor Performance:** Which taxi operators generate the most revenue?
+* **Vendor Performance:** Comparing revenue generation across different taxi operators to identify the highest and lowest performers.
 * **Borough Popularity:** Where do most pickups and drop-offs happen?
 
 ---
