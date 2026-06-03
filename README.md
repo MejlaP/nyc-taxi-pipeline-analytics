@@ -47,7 +47,7 @@ The entire project was developed and verified within the free Databricks Communi
 * **yellow_trips_enriched:** Wide production table combining cleansed trips and lookup zones. Features new calculated column `trip_duration_mins`.
 
 ### 4. gold Schema (Business Aggregations)
-* **daily_trip_summary:** Business-ready Delta table aggregated at the daily level (`pickup_date`) serving as a direct source for Power BI/Tableau reports (`total_trips`, `avg_distance_per_trip`, `total_revenue`).
+* **daily_trip_summary:** Business-ready Delta table aggregated at the daily level (`pickup_date`) serving as a direct source for Power BI/Tableau reports (`total_trips`, `avg_distance_per_trip`, `total_revenue`, etc.).
 
 ---
 
