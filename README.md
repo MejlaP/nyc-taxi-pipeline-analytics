@@ -31,7 +31,7 @@ The entire project was developed and verified within the free Databricks Communi
 │       └── daily_trip_summary.ipynb             # Final BI-ready report aggregation
 ├── quick_analysis/
 │   └── yellow_taxi_eda.ipynb                    # Exploratory Data Analysis (EDA on gold data)
-
+```
 ## Pipeline & Transformations
 
 ### 1. landing Schema (Raw Storage)
