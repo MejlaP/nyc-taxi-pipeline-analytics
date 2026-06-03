@@ -37,20 +37,18 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ```
 ## ⚙️ Data Pipeline & Transformations
 
-### 1. Landing Zone (Raw Storage)
-* **nyctaxi_yellow:** Raw, untouched Parquet files split into monthly folders, exactly as they come from the backend database.
-* **taxi_zone_lookup:** A static CSV file used to map numeric Zone IDs to real NYC Boroughs.
+> **Data Source (Landing Zone):** Before the pipeline starts, raw, untouched Parquet files (split into monthly folders) and a static CSV zone lookup file are uploaded and stored within the Databricks Volume storage.
 
-### 2. Bronze Layer (Ingestion)
-* **yellow_trips_raw:** A Delta table that acts as a safety copy. It keeps 100% of the original data structure (overwritten on each run) and adds a `processed_timestamp` so we know exactly when the data entered our system.
+### 1. Bronze Layer (Ingestion)
+* **yellow_trips_raw (`01_bronze/`):** This is the first code script in the pipeline. It takes the raw Parquet files from the Landing Zone and loads them into a Delta table as a safety copy. It keeps 100% of the original data structure (overwritten on each run) and adds a `processed_timestamp` so we know exactly when the data entered our system.
 
-### 3. Silver Layer (Cleaning & Enrichment)
-* **yellow_trips_cleansed:** Data is cleaned up here. Columns are renamed to standard `snake_case`, invalid records are dropped, and raw numeric codes (like payment types) are decoded into human-readable text.
-* **taxi_zone_lookup:** Enhances the static zone table by adding `effective_date` and `end_date` to handle any future changes in location data (SCD logic).
-* **yellow_trips_enriched:** The main production table. It joins the cleansed taxi trips with the location lookup table and calculates a new column: `trip_duration_mins`.
+### 2. Silver Layer (Cleaning & Enrichment)
+* **yellow_trips_cleansed (`02_silver/`):** Data is cleaned up here. Columns are renamed to standard `snake_case`, invalid records are dropped, and raw numeric codes (like payment types) are decoded into human-readable text.
+* **taxi_zone_lookup (`02_silver/`):** Enhances the static zone table by adding `effective_date` and `end_date` to handle any future changes in location data (SCD logic).
+* **yellow_trips_enriched (`02_silver/`):** The main production table. It joins the cleansed taxi trips with the location lookup table and calculates a new column: `trip_duration_mins`.
 
-### 4. Gold Layer (Business Reports)
-* **daily_trip_summary:** A clean, aggregated Delta table optimized for BI tools like Power BI or Tableau. It groups data by `pickup_date` and provides clear business metrics like `total_trips`, `avg_distance_per_trip`, `total_revenue`, etc.
+### 3. Gold Layer (Business Reports)
+* **daily_trip_summary (`03_gold/`):** A clean, aggregated Delta table optimized for BI tools like Power BI or Tableau. It groups data by `pickup_date` and provides clear business metrics like `total_trips`, `avg_distance_per_trip`, `total_revenue`, etc.
 
 ---
 
