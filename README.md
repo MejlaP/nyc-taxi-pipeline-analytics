@@ -60,10 +60,9 @@ The `yellow_taxi_eda.ipynb` notebook delivers actionable insights regarding:
 ---
 
 ## Attribution and Course Inspiration
-This project was developed as an independent, practical capstone to solidify advanced data engineering competencies. The core architectural concepts (Medallion Architecture) and data engineering workflows are inspired by the educational materials provided by [FILL IN AUTHOR'S NAME OR COURSE NAME].
+This project is based on the data engineering curriculum and architecture designed by Malvik Vaghadia in the course "Azure Databricks and Spark SQL (Python)". While the core architectural framework (Medallion layers), database schemas, analytical assignment questions, and code logic were provided by the instructor, the hands-on setup, debugging, and execution within this repository were performed independently.
 
-**Key modifications and independent additions introduced in this repository:**
-1. **Environment Adaptation:** Optimized the workload configurations specifically to run efficiently inside the resource-constrained Databricks Community Edition environment.
-2. **Custom Historical Dataset:** Implemented using a completely independent time frame (H2 2025), which required rewriting data verification checks and edge-case validations.
-3. **Enriched Documentation:** All notebooks are supplemented with custom technical markdown cells and execution logs.
-4. **Independent EDA Module:** Designed and executed a full Exploratory Data Analysis module featuring custom time-series correlation charts built entirely outside the mandatory scope of the original curriculum.
+**My independent contributions and development workflow:**
+1. **Hands-on Implementation:** Independently wrote the logic for data transformations and the Exploratory Data Analysis (EDA) based on the instructor's business questions, followed by self-correction and code optimization against the course reference solutions.
+2. **New Dataset & Timeline:** Applied the entire methodology to a completely different and newer time frame (H2 2025), requiring separate data validation of late-2025 taxi records.
+3. **Environment Adaptation:** Configured and optimized the execution of all notebooks to run properly within the strict resource and compute constraints of the free Databricks Community Edition utilizing Unity Catalog.
