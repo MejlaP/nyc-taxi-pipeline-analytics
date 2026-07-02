@@ -24,6 +24,13 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 
 ---
 
+## 📂 Repository Structure
+* **`one_off/`:** Databricks Community Edition
+* **`transformations/`:** The core of the project, containing the incremental pipeline (Bronze → Silver → Gold). It implements SCD Type 2 logic and Temporal Joins to ensure data integrity and track historical changes.
+* **`quick_analysis/`:** Notebooks designed for ad-hoc analysis, data quality checks, and generating initial insights (Data Exploration).
+
+---
+
 ## ⚙️ Data Pipeline & Orchestration
 
 > **Data Source (Landing Zone):** Raw Parquet files and static CSV lookups are stored within Databricks Volume storage.
