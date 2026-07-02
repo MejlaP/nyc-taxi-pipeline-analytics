@@ -6,7 +6,7 @@ This project is a hands-on data engineering pipeline that processes real-world N
 The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**, using **Unity Catalog** (`nyctaxi`) for data cataloging and schema isolation.
 
 ---
-## Medallion Architecture Workflow
+## 🔄 Medallion Architecture Workflow
 <img width="1645" height="1042" alt="diagram_final" src="https://github.com/user-attachments/assets/0823ab3d-7c83-4ec8-ad97-a87b535369ec" />
 
 ---
