@@ -39,8 +39,6 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ### 3. Gold Layer (Business Reports)
 * **daily_trip_summary (`03_gold/`):** provides aggregated business metrics optimized for BI tools.
 
----
-
 ### Orchestration
 * **Production Pipeline:** Logic within `transformations/` is automated via Databricks Workflows, ensuring incremental updates.
 * **Initialization:** Notebooks in `one_off/` are strictly separated for backfilling and are not part of the recurring production schedule.
