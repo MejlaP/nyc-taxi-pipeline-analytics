@@ -1,7 +1,7 @@
 # NYC Taxi Data Pipeline & Analytics (H2 2025)
 
 ## 📌 Project Overview
-This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025 (July to December). Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
+This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025. Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
 
 The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**, using **Unity Catalog** (`nyctaxi`) for data cataloging and schema isolation.
 
