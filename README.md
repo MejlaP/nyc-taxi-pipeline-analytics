@@ -1,9 +1,17 @@
 # NYC Taxi Data Pipeline & Analytics (H2 2025)
 
 ## 📌 Project Overview
-This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025 (July to December). Using **Apache Spark** and the **Medallion Architecture**, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
+This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025 (July to December). Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
 
 The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**, using **Unity Catalog** (`nyctaxi`) for data cataloging and schema isolation.
+
+---
+
+## ⚙️ Engineering Highlights
+* **Incremental Processing & Orchestration:** Built a robust ETL pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), ensuring consistent and automated updates to the Gold layer.
+* **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
+* **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
+* **Environment Optimization:** Pipeline configured to run within the strict memory and compute limits of the Databricks Community Edition.
 
 ---
 
@@ -16,39 +24,26 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 
 ---
 
-## 📂 Repository Structure
+## ⚙️ Data Pipeline & Orchestration
 
-```text
-├── one_off/                                     # Setup & Environment Initialization
-│   ├── creating_catalogs_schemas_volume.ipynb   # Creates Unity Catalog, schemas, and Volumes
-│   ├── backfill_historical_yellow_trips.ipynb   # Creates monthly folder structures in Volume
-│   └── create_folder_for_taxi_zone_lookup.ipynb # Creates storage folder for lookup data
-├── transformations/                             # Core ETL Pipeline (Landing ➔ Gold)
-│   ├── 01_bronze/
-│   │   └── yellow_trips_raw.ipynb               # First ingestion layer + audit timestamps
-│   ├── 02_silver/
-│   │   ├── taxi_zone_lookup.ipynb               # Prepares location lookup data (SCD history tracking)
-│   │   ├── yellow_trips_cleansed.ipynb          # Renames columns to snake_case & decodes numeric IDs
-│   │   └── yellow_trips_enriched.ipynb          # Joins trips with zones + calculates trip duration
-│   └── 03_gold/
-│       └── daily_trip_summary.ipynb             # Aggregates daily stats for BI tools
-├── quick_analysis/
-│   └── yellow_taxi_eda.ipynb                    # Data insights & visualization
-```
-## ⚙️ Data Pipeline & Transformations
-
-> **Data Source (Landing Zone):** Before the pipeline starts, raw, untouched Parquet files (split into monthly folders) and a static CSV zone lookup file are uploaded and stored within the Databricks Volume storage.
+> **Data Source (Landing Zone):** Raw Parquet files and static CSV lookups are stored within Databricks Volume storage.
 
 ### 1. Bronze Layer (Ingestion)
-* **yellow_trips_raw (`01_bronze/`):** This is the first code script in the pipeline. It takes the raw Parquet files from the Landing Zone and loads them into a Delta table as a safety copy. It keeps 100% of the original data structure (overwritten on each run) and adds a `processed_timestamp` so we know exactly when the data entered our system.
+* **yellow_trips_raw (`01_bronze/`):** loads raw data into a Delta table, adding a `processed_timestamp` for auditability.
 
 ### 2. Silver Layer (Cleaning & Enrichment)
 * **yellow_trips_cleansed (`02_silver/`):** Data is cleaned up here. Columns are renamed to standard `snake_case`, invalid records are dropped, and raw numeric codes (like payment types) are decoded into human-readable text.
-* **taxi_zone_lookup (`02_silver/`):** Enhances the static zone table by adding `effective_date` and `end_date` to handle any future changes in location data (SCD logic).
-* **yellow_trips_enriched (`02_silver/`):** The main production table. It joins the cleansed taxi trips with the location lookup table and calculates a new column: `trip_duration_mins`.
+* **taxi_zone_lookup (`02_silver/`):** Manages historical changes via SCD Type 2 (effective/end dates).
+* **yellow_trips_enriched (`02_silver/`):** Executes Temporal Joins to merge trip facts with valid location dimensions.
 
 ### 3. Gold Layer (Business Reports)
-* **daily_trip_summary (`03_gold/`):** A clean, aggregated Delta table optimized for BI tools like Power BI or Tableau. It groups data by `pickup_date` and provides clear business metrics like `total_trips`, `avg_distance_per_trip`, `total_revenue`, etc.
+* **daily_trip_summary (`03_gold/`):** provides aggregated business metrics optimized for BI tools.
+
+---
+
+### Orchestration
+* **Production Pipeline:** Logic within `transformations/` is automated via Databricks Workflows, ensuring incremental updates.
+* **Initialization:** Notebooks in `one_off/` are strictly separated for backfilling and are not part of the recurring production schedule.
 
 ---
 
@@ -62,7 +57,7 @@ The `yellow_taxi_eda.ipynb` notebook analyzes the final Gold data to answer core
 ## 🤝 Course Inspiration & Credit
 This project is based on the data engineering curriculum and architecture designed by **Malvik Vaghadia** in the course **"Azure Databricks and Spark SQL (Python)"**. 
 
-While the general Medallion framework, database schemas, business questions, and core code logic come from the course curriculum, the hands-on setup, implementation, and execution were done independently.
+While the framework and core logic were inspired by the course, the implementation, setup, H2 2025 dataset adaptation, and incremental orchestration logic were developed independently to demonstrate modern data engineering practices.
 
 **My development workflow and adaptations:**
 1. **Active Learning & Implementation:** I wrote the transformation and analysis code myself based on the instructor's assignment goals, then self-corrected and optimized it using the course solutions.
