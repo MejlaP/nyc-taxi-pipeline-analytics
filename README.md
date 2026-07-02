@@ -1,3 +1,4 @@
+<img width="1352" height="210" alt="job" src="https://github.com/user-attachments/assets/a39bd7e6-ad1e-43e5-ae48-3a6a6d12eb99" />
 # NYC Taxi Data Pipeline & Analytics (H2 2025)
 
 ## 📌 Project Overview
