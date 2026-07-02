@@ -1,4 +1,3 @@
-<img width="1352" height="210" alt="job" src="https://github.com/user-attachments/assets/a39bd7e6-ad1e-43e5-ae48-3a6a6d12eb99" />
 # NYC Taxi Data Pipeline & Analytics (H2 2025)
 
 ## 📌 Project Overview
@@ -54,6 +53,8 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ### Orchestration
 * **Production Pipeline:** Logic within `transformations/` is automated via Databricks Workflows, ensuring incremental updates.
 * **Initialization:** Notebooks in `one_off/` are strictly separated for backfilling and are not part of the recurring production schedule.
+
+<img width="1352" height="210" alt="job" src="https://github.com/user-attachments/assets/a39bd7e6-ad1e-43e5-ae48-3a6a6d12eb99" />
 
 ---
 
