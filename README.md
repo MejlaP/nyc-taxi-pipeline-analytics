@@ -3,7 +3,7 @@
 ## 📌 Project Overview
 This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025. Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
 
-The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**, using **Unity Catalog** (`nyctaxi`) for data cataloging and schema isolation.
+The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**.
 
 ---
 ## 🔄 Medallion Architecture Workflow
@@ -22,7 +22,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 
 ## 🛠️ Technology Stack
 * **Platform:** Databricks Community Edition
-* **Data Governance:** Unity Catalog (Catalog: `nyctaxi`)
+* **Data Governance:** Cataloging & Schema Management (Catalog: `nyctaxi`)
 * **Processing Engine:** Apache Spark (via PySpark API)
 * **Storage & Table Format:** Delta Lake & Parquet
 * **Languages:** Python
@@ -78,5 +78,5 @@ While the framework and core logic were inspired by the course, the implementati
 **My development workflow and adaptations:**
 1. **Active Learning & Implementation:** I wrote the transformation and analysis code myself based on the instructor's assignment goals, then self-corrected and optimized it using the course solutions.
 2. **Fresh Dataset:** I applied the methodology to a completely different and newer time frame (**H2 2025**), handling data validation for this specific period.
-3. **Environment Optimization:** I adjusted and configured the pipeline to run successfully within the strict memory and compute limits of the free Databricks Community Edition with Unity Catalog.
+3. **Environment Optimization:** I adjusted and configured the pipeline to run successfully within the strict memory and compute limits of the free Databricks Community Edition.
 4. **Local Development Setup:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
