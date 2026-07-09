@@ -12,7 +12,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ---
 
 ## ⚙️ Engineering Highlights
-* **Incremental Processing & Orchestration:** Built a robust ETL pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), ensuring consistent and automated updates to the Gold layer.
+* **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), ensuring consistent and automated updates to the Gold layer.
 * **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Environment Optimization:** Pipeline configured to run within the strict memory and compute limits of the Databricks Community Edition.
