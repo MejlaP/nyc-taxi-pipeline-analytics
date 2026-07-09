@@ -16,6 +16,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 * **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Environment Optimization:** Pipeline configured to run within the strict memory and compute limits of the Databricks Community Edition.
+* **Local Development & Version Control:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
 
 ---
 
@@ -25,6 +26,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 * **Processing Engine:** Apache Spark (via PySpark API)
 * **Storage & Table Format:** Delta Lake & Parquet
 * **Languages:** Python
+* **Development Tools:** VS Code, Git & GitHub
 
 ---
 
@@ -32,6 +34,9 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 * **`one_off/`:** Notebooks for initial data ingestion and cleaning (backfill). These are used once for initial table initialization.
 * **`transformations/`:** The core of the project, containing the incremental pipeline (Bronze → Silver → Gold). It implements SCD Type 2 logic and Temporal Joins to ensure data integrity and track historical changes.
 * **`quick_analysis/`:** Notebooks designed for ad-hoc analysis, data quality checks, and generating initial insights (Data Exploration).
+* **`modules/`:** Reusable Python utility functions (`dateutils.py`, `metadata.py`) used across the pipeline notebooks
+    - `dateutils.py`: Date helper functions for incremental processing logic.
+    - `metadata.py`: Adds a processed_timestamp column to DataFrames for auditability.
 
 ---
 
@@ -74,3 +79,4 @@ While the framework and core logic were inspired by the course, the implementati
 1. **Active Learning & Implementation:** I wrote the transformation and analysis code myself based on the instructor's assignment goals, then self-corrected and optimized it using the course solutions.
 2. **Fresh Dataset:** I applied the methodology to a completely different and newer time frame (**H2 2025**), handling data validation for this specific period.
 3. **Environment Optimization:** I adjusted and configured the pipeline to run successfully within the strict memory and compute limits of the free Databricks Community Edition with Unity Catalog.
+4. **Local Development Setup:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
