@@ -1,7 +1,7 @@
 # NYC Taxi Data Pipeline & Analytics (H2 2025)
 
 ## 📌 Project Overview
-This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025. Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables.
+This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025. Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables. The pipeline output is visualized in a Power BI dashboard, providing business-ready insights into revenue trends, trip volumes, and fare analysis.
 
 The entire pipeline was built, debugged, and run within the free **Databricks Community Edition**.
 
@@ -12,12 +12,11 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 ---
 
 ## ⚙️ Engineering Highlights
-* **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), ensuring consistent and automated updates to the Gold layer.
+* * **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers H2 2025 through January 2026.
 * **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Environment Optimization:** Pipeline configured to run within the strict memory and compute limits of the Databricks Community Edition.
 * **Local Development & Version Control:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
-* **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers H2 2025 through January 2026.
 
 ---
 
@@ -86,3 +85,4 @@ While the framework and core logic were inspired by the course, the implementati
 2. **Fresh Dataset:** I applied the methodology to a completely different and newer time frame (**H2 2025**), handling data validation for this specific period.
 3. **Environment Optimization:** I adjusted and configured the pipeline to run successfully within the strict memory and compute limits of the free Databricks Community Edition.
 4. **Local Development Setup:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
+5. **BI Integration:** Connected Power BI directly to the Databricks Gold layer via SQL connector, building an interactive dashboard for business reporting.
