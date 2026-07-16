@@ -37,6 +37,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Fr
 * **`modules/`:** Reusable Python utility functions (`dateutils.py`, `metadata.py`) used across the pipeline notebooks
     - `dateutils.py`: Date helper functions for incremental processing logic.
     - `metadata.py`: Adds a processed_timestamp column to DataFrames for auditability.
+* **`dashboard/`:** Power BI dashboard file (`nyc_taxi_dashboard.pbix`) connected to the Gold layer for business reporting.
 
 ---
 
