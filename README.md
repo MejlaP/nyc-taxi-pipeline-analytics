@@ -12,7 +12,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Fr
 ---
 
 ## ⚙️ Engineering Highlights
-* * **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers June 2025 through January 2026.
+* **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers June 2025 through January 2026.
 * **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Local Development & Version Control:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
