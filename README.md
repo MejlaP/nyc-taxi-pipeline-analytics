@@ -28,6 +28,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 * **Storage & Table Format:** Delta Lake & Parquet
 * **Languages:** Python
 * **Development Tools:** VS Code, Git & GitHub
+* **BI Tool:** Power BI
 
 ---
 
