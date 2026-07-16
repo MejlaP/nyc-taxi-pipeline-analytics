@@ -1,4 +1,4 @@
-# NYC Taxi Data Pipeline & Analytics (H2 2025)
+# NYC Taxi Data Pipeline & Analytics (2025–2026)
 
 ## 📌 Project Overview
 This project is a hands-on data engineering pipeline that processes real-world NYC Yellow Taxi data from the second half of 2025. Using Apache Spark and the Medallion Architecture, the pipeline takes raw, messy data and transforms it step-by-step into clean, business-ready tables. The pipeline output is visualized in a Power BI dashboard, providing business-ready insights into revenue trends, trip volumes, and fare analysis.
@@ -12,7 +12,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Fr
 ---
 
 ## ⚙️ Engineering Highlights
-* * **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers H2 2025 through January 2026.
+* * **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers June 2025 through January 2026.
 * **Historical Data Management (SCD Type 2):** Implemented SCD Type 2 logic for the taxi_zone_lookup table (Silver layer) to track historical changes in location names, maintaining a full audit trail.
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Local Development & Version Control:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
@@ -77,11 +77,11 @@ The `yellow_taxi_eda.ipynb` notebook analyzes the final Gold data to answer core
 ## 🤝 Course Inspiration & Credit
 This project is based on the data engineering curriculum and architecture designed by **Malvik Vaghadia** in the course **"Azure Databricks and Spark SQL (Python)"**. 
 
-While the framework and core logic were inspired by the course, the implementation, setup, H2 2025 dataset adaptation, and incremental orchestration logic were developed independently to demonstrate modern data engineering practices.
+While the framework and core logic were inspired by the course, the implementation, setup, 2025–2026 dataset adaptation, and incremental orchestration logic were developed independently to demonstrate modern data engineering practices.
 
 **My development workflow and adaptations:**
 1. **Active Learning & Implementation:** I wrote the transformation and analysis code myself based on the instructor's assignment goals, then self-corrected and optimized it using the course solutions.
-2. **Fresh Dataset:** I applied the methodology to a completely different and newer time frame (**H2 2025**), handling data validation for this specific period.
+2. **Fresh Dataset:** I applied the methodology to a completely different and newer time frame (**June 2025 – January 2026**), handling data validation for this specific period.
 3. **Environment Optimization:** I adjusted and configured the pipeline to run successfully within the strict memory and compute limits of the free Databricks Free Edition.
 4. **Local Development Setup:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
 5. **BI Integration:** Connected Power BI directly to the Databricks Gold layer via SQL connector, building an interactive dashboard for business reporting.
