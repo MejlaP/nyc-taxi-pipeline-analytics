@@ -17,6 +17,7 @@ The entire pipeline was built, debugged, and run within the free **Databricks Co
 * **Temporal Joins:** Fact-to-dimension joins are configured to respect the validity periods of location data, ensuring accurate record assignment even as business attributes change over time.
 * **Environment Optimization:** Pipeline configured to run within the strict memory and compute limits of the Databricks Community Edition.
 * **Local Development & Version Control:** Developed code locally in VS Code with Git version control, deploying and testing directly in the Databricks workspace via GitHub integration.
+* **Incremental Processing & Orchestration:** Built a robust ELT pipeline designed for incremental batch processing. The workflow is orchestrated using Databricks Workflows (Jobs), triggered monthly upon new data arrival in the landing zone. Pipeline is actively running — data covers H2 2025 through January 2026.
 
 ---
 
@@ -68,6 +69,9 @@ The `yellow_taxi_eda.ipynb` notebook analyzes the final Gold data to answer core
 * **Vendor Performance:** Comparing revenue generation across different taxi operators to identify the highest and lowest performers.
 * **Borough Popularity:** Where do most pickups and drop-offs happen?
 * **Data Quality Findings:** Negative fare values were identified, representing refunds or billing corrections inherent to real-world taxi operations.
+* **Power BI Dashboard:** Connected Power BI directly to the Gold layer (daily_trip_summary) via Databricks SQL connector for business reporting.
+
+<img width="977" height="267" alt="2_lists" src="https://github.com/user-attachments/assets/5b064d9c-b31f-4d3d-a8b3-276791410fe0" />
 
 ---
 
